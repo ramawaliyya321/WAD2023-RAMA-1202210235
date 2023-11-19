@@ -1,3 +1,4 @@
+<?php include("connect.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +25,7 @@
                 </thead>
                 <tbody>
             <?php
-            include("connect.php");
+            
 
             // Buatlah query untuk mengambil data dari database (gunakan query SELECT)
             $query = mysqli_query($connect, "SELECT * FROM showroom_mobil");
@@ -38,16 +39,27 @@
             // 2. Apabila tidak ada data dalam database, maka outputnya adalah pesan 'tidak ada data dalam tabel'
 
             //<!--  **********************  1  **************************     -->
-            if ($query){
-                while ($row = mysqli_fetch_assoc($query)){
             
-            
-
-
-
-
-
-
+            if ($query) {
+                while ($row = mysqli_fetch_assoc($query)) {
+                    $id = $row['id'];
+                    $nama_mobil = $row['nama_mobil'];
+                    $brand_mobil = $row['brand_mobil'];
+                    $warna_mobil = $row['warna_mobil'];
+                    $tipe_mobil =  $row['tipe_mobil'];
+                    $harga_mobil = $row['harga_mobil'];
+                    echo '<tr>
+                    <th scope="row">' . $id . '</th>
+                    
+                    <td>' . $nama_mobil .'</td>
+                    <td>'. $brand_mobil .'</td>
+                    <td>' . $warna_mobil .'</td>
+                    <td>' . $tipe_mobil .'</td>
+                    <td>' . $harga_mobil .'</td>
+                    <td><a href="form_detail_mobil.php?id=' . $id .'">LINK</a></td>
+                    </tr>';
+                }
+            }
 
             //<!--  **********************  1  **************************     -->
 
@@ -60,21 +72,6 @@
             
             //<!--  **********************  2  **************************     -->
             ?>
-                    <tr>
-                        <th scope="row"><?= $row['id']?></th>
-                        <th scope="row"><?= $row['nama_mobil']?></th>
-                        <th scope="row"><?= $row['brand_mobil']?></th>
-                        <th scope="row"><?= $row['warna_mobil']?></th>
-                        <th scope="row"><?= $row['tipe_mobil']?></th>
-                        <th scope="row"><?= $row['harga_mobil']?></th>
-                        <th scope="row">
-                            <a href="form_detail_mobil.php?id=<?php $id ?>">link</a>
-                        </th>
-                    </tr>
-                    <?php
-                }
-            }
-                ?>
                 </tbody>
             </table>
         </div>

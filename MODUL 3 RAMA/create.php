@@ -30,7 +30,7 @@ $query = mysqli_query($connect, "INSERT INTO showroom_mobil(nama_mobil, brand_mo
 
     // (5) Buatkan kondisi jika eksekusi query berhasil
 if($query){
-    echo "<script>alert('Data telah ditambahkan!'</script>)";
+    echo "<script>alert('Data telah ditambahkan!)'</script>";
     echo "<meta http-equiv='refresh' content='1 url=home.php'>";
 } else {
     echo "<script>alert('Gagal ditambahkan!')</script>";
